@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/test-exporer/static/css/main.67c4a8d4.chunk.css",
+    "main.js": "/test-exporer/static/js/main.0057d666.chunk.js",
+    "main.js.map": "/test-exporer/static/js/main.0057d666.chunk.js.map",
+    "runtime-main.js": "/test-exporer/static/js/runtime-main.6762c51a.js",
+    "runtime-main.js.map": "/test-exporer/static/js/runtime-main.6762c51a.js.map",
+    "static/js/2.10a93ecf.chunk.js": "/test-exporer/static/js/2.10a93ecf.chunk.js",
+    "static/js/2.10a93ecf.chunk.js.map": "/test-exporer/static/js/2.10a93ecf.chunk.js.map",
+    "static/css/3.86c32f4f.chunk.css": "/test-exporer/static/css/3.86c32f4f.chunk.css",
+    "static/js/3.69d6c038.chunk.js": "/test-exporer/static/js/3.69d6c038.chunk.js",
+    "static/js/3.69d6c038.chunk.js.map": "/test-exporer/static/js/3.69d6c038.chunk.js.map",
+    "index.html": "/test-exporer/index.html",
+    "precache-manifest.ff1a751023e2926a25e689416d2b775d.js": "/test-exporer/precache-manifest.ff1a751023e2926a25e689416d2b775d.js",
+    "service-worker.js": "/test-exporer/service-worker.js",
+    "static/css/3.86c32f4f.chunk.css.map": "/test-exporer/static/css/3.86c32f4f.chunk.css.map",
+    "static/css/main.67c4a8d4.chunk.css.map": "/test-exporer/static/css/main.67c4a8d4.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6762c51a.js",
+    "static/js/2.10a93ecf.chunk.js",
+    "static/css/main.67c4a8d4.chunk.css",
+    "static/js/main.0057d666.chunk.js"
+  ]
+}
