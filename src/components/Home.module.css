@@ -1,0 +1,14 @@
+.blockInformation,.blockHeading{width: 1000px; background: antiquewhite;padding: 5px 0; display: flex; justify-content: center; align-items: center; margin: 0 auto;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+}
+.blockHeading{background: white}
+.currency{text-align: center}
+.navLink{text-decoration: none; color: black}
+
+.columnHeading1, .columnInformation1{width: 15px; text-align: right;margin-right:20px}
+.columnHeading2, .columnInformation2{width: 30px;margin-right:10px}
+.columnHeading3, .columnInformation3{width: 200px}
+.columnHeading4, .columnInformation4{width: 150px;text-align: right}
+.columnHeading3:hover, .columnHeading4:hover{text-decoration: underline;cursor: pointer}

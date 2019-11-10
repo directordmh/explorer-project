@@ -1,0 +1,6 @@
+*{margin:0;padding:0}
+.header{width: 100%; background: cadetblue; text-align: center;padding: 25px 0}
+.header p{font-weight: bold;color: white}
+.blockNavLink{margin-top: 15px}
+.blockNavLink:hover{text-decoration: underline}
+.navLink{text-decoration: none;color: black}
