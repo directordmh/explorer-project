@@ -39,3 +39,12 @@ export const getCurrencyResult = createSelector(getCurrencyResultSelector,
     (currencyResult) => {
         return currencyResult
     })
+
+const getMarketCapSelector = (state) => {
+    return state.informationPage.marketCap;
+}
+
+export const getMarketCa = createSelector(getMarketCapSelector,
+    (marketCap) => {
+    return marketCap
+    })

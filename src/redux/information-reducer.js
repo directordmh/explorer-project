@@ -1,4 +1,4 @@
-import {currencyConverterAPI, currencyResultAPI, informationAPI} from "../api/api";
+import {currencyConverterAPI, currencyResultAPI, informationAPI, marketCapAPI} from "../api/api";
 
 const INFORMATION_TEST = 'INFORMATION_TEST'
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
@@ -6,7 +6,7 @@ const CURRENCY_CONVERTER = 'CURRENCY_CONVERTER'
 const CURRENCY_INPUT = 'CURRENCY_INPUT'
 const CURRENCY_RESULT = 'CURRENCY_RESULT'
 const CURRENCY_SELECTED = 'CURRENCY_SELECTED'
-
+const MARKET_CAP = 'MARKET_CAP'
 
 let initialState = {
         information: {},
@@ -15,7 +15,8 @@ let initialState = {
         currencySelected: 'usd',
         currencyInput: 1,
         currencyResult: '',
-        currencyIR: ''
+        currencyIR: '',
+        marketCap: ''
 }
 
 const informationReducer = (state = initialState, action) => {
@@ -52,6 +53,11 @@ const informationReducer = (state = initialState, action) => {
             ...state,
             currencySelected: action.currencySelected
         }
+        case MARKET_CAP:
+            return {
+                ...state,
+                marketCap: action.marketCap
+            }
         default:
             return state
     }
@@ -63,6 +69,7 @@ export const setCurrencyConverter = (currency) => ({type: CURRENCY_CONVERTER, cu
 export const setCurrencyInput = (currencyInput, currencyResult) => ({type: CURRENCY_INPUT, currencyInput, currencyResult})
 export const setCurrencyResult = (data) => ({type: CURRENCY_RESULT, data})
 export const setCurrencySelected = (currencySelected) => ({type: CURRENCY_SELECTED, currencySelected})
+export const setMarketCap = (marketCap) => ({type: MARKET_CAP, marketCap})
 export const requestInformation = (id) => {
     return async (dispatch) => {
         dispatch(setIsFetching(true))
@@ -76,10 +83,17 @@ export const requestInformation = (id) => {
 }
 
 export const requestResult = (id, selected, currencyInput) => {
-    return (dispatch) => {
-        currencyResultAPI.getCurrencyResult(id, selected, currencyInput).then(data => {
+    return async (dispatch) => {
+        let data = await currencyResultAPI.getCurrencyResult(id, selected, currencyInput)
             dispatch(setCurrencyResult(data))
-        })
+        let response = await marketCapAPI.getMarketCa(id, selected, currencyInput)
+            dispatch(setMarketCap(response))
+    }
+}
+export const requestMarket = (id, selected) => {
+    return async (dispatch) => {
+        let response = await marketCapAPI.getMarketCa(id, selected)
+        dispatch(setMarketCap(response))
     }
 }
 

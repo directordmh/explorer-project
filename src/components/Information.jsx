@@ -31,6 +31,10 @@ const Information = (props) => {
                     )}
                 </select>
             </div>
+            <div>Рыночная капитализация: {props.marketCap.marketCap}</div>
+            <div>Рейтинг рыночной капитализации: {props.marketCap.marketCapRank}</div>
+            <div>Полный объем: {props.marketCap.totalVolume}</div>
+            <div>Общий объем поставок: {props.marketCap.totalSupply}</div>
         </div>
     )
 

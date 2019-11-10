@@ -44,3 +44,17 @@ export const currencyResultAPI = {
             })
     }
 }
+
+export const marketCapAPI = {
+    getMarketCa(id, selected) {
+        return instance.get(`coins/markets?vs_currency=${selected}&ids=${id}&order=market_cap_desc&per_page=100&page=1&sparkline=false`)
+            .then(response => {
+                return {
+                    marketCap: response.data[0].market_cap,
+                    marketCapRank: response.data[0].market_cap_rank,
+                    totalVolume: response.data[0].total_volume,
+                    totalSupply: response.data[0].total_supply
+                }
+            })
+    }
+}

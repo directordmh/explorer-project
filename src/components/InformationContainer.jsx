@@ -2,8 +2,14 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {compose} from "redux";
 import Information from "./Information";
-import {getCurrencyConverter, getInformation, getIsFetching, getCurrencyResult} from "../redux/exchanges-selectors";
-import {requestInformation, requestResult, setCurrencyInput, setCurrencySelected} from "../redux/information-reducer";
+import {getCurrencyConverter, getInformation, getIsFetching, getCurrencyResult, getMarketCa} from "../redux/exchanges-selectors";
+import {
+    requestInformation,
+    requestMarket,
+    requestResult,
+    setCurrencyInput,
+    setCurrencySelected
+} from "../redux/information-reducer";
 import {withRouter} from "react-router-dom";
 import s from './Information.module.css'
 
@@ -15,10 +21,12 @@ class InformationContainer extends React.Component {
         this.props.getInformation(id)
         this.props.getCurrencyConverter()
         this.props.getCurrencyResult(id, currencySelected, this.props.currencyInput)
+        this.props.getMarketCa(id, currencySelected)
     }
 
     onPageChanged = (selected) => {
         this.props.getCurrencyResult(this.props.match.params.id, selected, this.props.currencyInput)
+        this.props.getMarketCa(this.props.match.params.id, selected)
     }
 
     render() {
@@ -33,6 +41,7 @@ class InformationContainer extends React.Component {
                              setCurrencySelected={this.props.setCurrencySelected}
                              request={this.onPageChanged}
                                 currencyIR={this.props.currencyIR}
+                                marketCap={this.props.marketCap}
                 />
     }
 }
@@ -45,7 +54,8 @@ let mapStateToProps = (state) => {
         currencyInput: state.informationPage.currencyInput,
         currencyIR: state.informationPage.currencyIR,
         currencySelected: state.informationPage.currencySelected,
-        currencyResult: getCurrencyResult(state)
+        currencyResult: getCurrencyResult(state),
+        marketCap: getMarketCa(state)
     }
 }
 
@@ -55,5 +65,6 @@ export default compose(
         getCurrencyConverter: requestInformation,
         setCurrencyInput,
         setCurrencySelected,
-        getCurrencyResult: requestResult
+        getCurrencyResult: requestResult,
+        getMarketCa: requestMarket
     })) (withRouter(InformationContainer))
