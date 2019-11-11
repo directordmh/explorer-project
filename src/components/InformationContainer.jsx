@@ -20,13 +20,14 @@ class InformationContainer extends React.Component {
         const {currencySelected} = this.props
         this.props.getInformation(id)
         this.props.getCurrencyConverter()
-        this.props.getCurrencyResult(id, currencySelected, this.props.currencyInput)
+        this.props.getCurrencyResult(id, currencySelected)
         this.props.getMarketCa(id, currencySelected)
     }
 
     onPageChanged = (selected) => {
-        this.props.getCurrencyResult(this.props.match.params.id, selected, this.props.currencyInput)
-        this.props.getMarketCa(this.props.match.params.id, selected)
+        let id = this.props.match.params.id
+        this.props.getCurrencyResult(id, selected)
+        this.props.getMarketCa(id, selected)
     }
 
     render() {

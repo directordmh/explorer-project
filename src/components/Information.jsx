@@ -6,7 +6,7 @@ const Information = (props) => {
     let change = (e) => {
         const etv = e.target.value
         if (!isFinite(etv) || etv.substr(-1) === ' ') return
-        props.setCurrencyInput(etv, props.currencyResult)
+        props.setCurrencyInput(etv)
     }
 
     let select = (e) => {

@@ -36,11 +36,10 @@ export const currencyConverterAPI = {
 }
 
 export const currencyResultAPI = {
-    getCurrencyResult(id, selected, currencyInput) {
+    getCurrencyResult(id, selected) {
         return instance.get(`simple/price?ids=${id}&vs_currencies=${selected}`)
             .then(response => {
-                return {currencyResult: response.data[id][selected],
-                        currencyInput: currencyInput}
+                return response.data[id][selected]
             })
     }
 }
