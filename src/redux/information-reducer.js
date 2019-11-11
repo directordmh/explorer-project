@@ -88,10 +88,6 @@ export const requestResult = (id, selected) => {
     return async (dispatch) => {
         let data = await currencyResultAPI.getCurrencyResult(id, selected)
             dispatch(setCurrencyResult(data))
-    }
-}
-export const requestMarket = (id, selected) => {
-    return async (dispatch) => {
         let response = await marketCapAPI.getMarketCa(id, selected)
         dispatch(setMarketCap(response))
     }

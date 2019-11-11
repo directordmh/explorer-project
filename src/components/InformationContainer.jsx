@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {compose} from "redux";
 import Information from "./Information";
-import {getCurrencyConverter, getInformation, getIsFetching, getCurrencyResult, getMarketCa} from "../redux/exchanges-selectors";
+import {getCurrencyConverter, getInformation, getIsFetching, getCurrencyResult} from "../redux/exchanges-selectors";
 import {
     requestInformation,
     requestMarket,
@@ -21,13 +21,10 @@ class InformationContainer extends React.Component {
         this.props.getInformation(id)
         this.props.getCurrencyConverter()
         this.props.getCurrencyResult(id, currencySelected)
-        this.props.getMarketCa(id, currencySelected)
     }
 
     onPageChanged = (selected) => {
-        let id = this.props.match.params.id
-        this.props.getCurrencyResult(id, selected)
-        this.props.getMarketCa(id, selected)
+        this.props.getCurrencyResult(this.props.match.params.id, selected)
     }
 
     render() {
@@ -35,28 +32,28 @@ class InformationContainer extends React.Component {
         return this.props.isFetching ? <div className={s.preloader}>Загрузка</div> :
                 <Information
                     info={this.props.information}
-                             currencyConverter={this.props.currency}
-                             currencyInput={this.props.currencyInput}
-                             setCurrencyInput={this.props.setCurrencyInput}
-                             currencyResult={this.props.currencyResult}
-                             setCurrencySelected={this.props.setCurrencySelected}
-                             request={this.onPageChanged}
-                                currencyIR={this.props.currencyIR}
-                                marketCap={this.props.marketCap}
+                            currencyConverter={this.props.currency}
+                            currencyInput={this.props.currencyInput}
+                            setCurrencyInput={this.props.setCurrencyInput}
+                            currencyResult={this.props.currencyResult}
+                            setCurrencySelected={this.props.setCurrencySelected}
+                            request={this.onPageChanged}
+                            currencyIR={this.props.currencyIR}
+                            marketCap={this.props.marketCap}
                 />
     }
 }
 
 let mapStateToProps = (state) => {
     return {
-        information: getInformation(state),
         isFetching: getIsFetching(state),
+        information: getInformation(state),
         currency: getCurrencyConverter(state),
+        currencyResult: getCurrencyResult(state),
+        currencySelected: state.informationPage.currencySelected,
         currencyInput: state.informationPage.currencyInput,
         currencyIR: state.informationPage.currencyIR,
-        currencySelected: state.informationPage.currencySelected,
-        currencyResult: getCurrencyResult(state),
-        marketCap: getMarketCa(state)
+        marketCap: state.informationPage.marketCap
     }
 }
 
@@ -64,8 +61,7 @@ export default compose(
     connect(mapStateToProps, {
         getInformation: requestInformation,
         getCurrencyConverter: requestInformation,
-        setCurrencyInput,
-        setCurrencySelected,
         getCurrencyResult: requestResult,
-        getMarketCa: requestMarket
+        setCurrencyInput,
+        setCurrencySelected
     })) (withRouter(InformationContainer))
